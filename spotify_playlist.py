@@ -1,26 +1,36 @@
-import os
-import spotipy
-from spotipy.oauth2 import SpotifyOAuth
-from dotenv import load_dotenv
+from utils import create_playlist
 
-load_dotenv()
 
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope="playlist-modify-public user-top-read"))
+def main():
+    # Display the main menu
+    print("Select an option:")
+    print("1. Create a playlist with your all-time top tracks")
+    print("2. Create a playlist with your last 6 months top tracks")
+    print("3. Create a playlist with your last month top tracks")
+    print("4. Exit")
 
-# Get user's top tracks
-results = sp.current_user_top_tracks(limit=50, time_range="long_term")
+    # Get the user's choice from the main menu
+    choice = int(input("Enter the option number: "))
 
-# Get track URIs
-track_uris = [track["uri"] for track in results["items"]]
+    # Define the time ranges mapping
+    time_ranges = {
+        1: "long_term",
+        2: "medium_term",
+        3: "short_term"
+    }
 
-# Get user's ID
-user_id = sp.current_user()["id"]
+    # Check if the user chose a valid option
+    if choice in time_ranges:
+        # Get the size of the playlist from the user
+        size = int(input("Enter the number of tracks to include in the playlist: "))
 
-# Create a new playlist
-playlist = sp.user_playlist_create(user_id, "My Top 50 All Time", public=True,
-                                   description="My most listened songs of all time")
+        # Create the playlist based on the chosen option and size
+        create_playlist(time_ranges[choice], size)
+    elif choice == 4:
+        print("Exiting the application.")
+    else:
+        print("Invalid option. Please try again.")
 
-# Add tracks to the playlist
-sp.playlist_add_items(playlist["id"], track_uris)
 
-print("Playlist created:", playlist["name"])
+if __name__ == "__main__":
+    main()
