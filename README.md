@@ -1,42 +1,44 @@
 # Spotify Playlist Creator
 
-A CLI-based Python application that creates Spotify playlists with your top tracks based on different time ranges. Users
-can create playlists for their all-time top tracks, top tracks from the last 6 months, or top tracks from the last
-month.
+This project is a simple Python application that uses the [Spotipy](https://spotipy.readthedocs.io/en/2.19.0/) library
+to create Spotify playlists based on your top tracks. It features a Tkinter GUI for easy user interaction.
 
 ## Table of Contents
 
-1. [Prerequisites](#prerequisites)
-2. [Installation](#installation)
-3. [Usage](#usage)
-4. [Project Structure](#project-structure)
-5. [License](#license)
-
-## Prerequisites
-
-Before you begin, ensure you have met the following requirements:
-
-- You have a Spotify account and have access to your `Client ID`, `Client Secret`, and `Redirect URI`.
-- You have Python 3.6 or later installed on your system.
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [License](#license)
 
 ## Installation
 
-1. Clone the repository:
+1. Clone this repository:
 
 ```bash
-git clone https://github.com/your-username/spotify-playlist-creator.git
-cd spotify-playlist-creator
+git clone https://github.com/your-github-username/spotify-playlist-creator.git
 ```
 
-2. Create a virtual environment and activate it:
+2. Install the required dependencies:
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate  # For Linux and macOS
-venv\Scripts\activate     # For Windows
+pip install -r requirements.txt
 ```
 
-3. Install the required dependencies:
+3. Set up your Spotify API credentials. Sign up for a Spotify Developer account and create a new app on
+   the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/applications). Note down the Client ID,
+   Client Secret, and set the Redirect URI to `http://localhost:8080`.
+
+Replace `<your_client_id>` and `<your_client_secret>` with your own credentials.
+
+## Usage
+
+1. Run the application:
+
+```bash
+python spotify_playlist_gui.py
+```
+
+2. The GUI will appear. Follow the on-screen instructions to create your custom Spotify playlists.
 
 ```bash
 pip install -r requirements.txt
@@ -51,22 +53,11 @@ SPOTIPY_CLIENT_SECRET=your_client_secret
 SPOTIPY_REDIRECT_URI=your_redirect_uri
 ```
 
-## Usage
-
-Run the `spotify_playlist.py` script to start the application:
-
-```bash
-python spotify_playlist.py
-```
-
-The application will display a main menu with the available options. Follow the prompts and input the required
-information when prompted.
-
 ## Project Structure
 
 The project consists of two Python script files:
 
-- `spotify_playlist.py`: The main script, which handles the CLI interface and user input.
+- `spotify_playlist_gui.py`: The main script, which handles the CLI interface and user input.
 - `utils.py`: The utility script, which includes the `create_playlist` function to create playlists based on the user's
   inputs.
 
