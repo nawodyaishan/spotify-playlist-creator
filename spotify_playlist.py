@@ -1,4 +1,8 @@
+import os
+from dotenv import load_dotenv
 from utils import create_playlist
+
+load_dotenv()
 
 
 def main():

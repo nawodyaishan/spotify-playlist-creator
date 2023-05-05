@@ -1,6 +1,9 @@
 import os
+from dotenv import load_dotenv
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+
+load_dotenv()
 
 
 def create_playlist(time_range, limit):
